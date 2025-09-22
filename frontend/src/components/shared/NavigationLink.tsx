@@ -9,9 +9,16 @@ type Props = {
 };
 
 const NavigationLink = (props: Props) => {
+  const handleClick = (e: React.MouseEvent) => {
+    if (props.onClick) {
+      e.preventDefault(); // Prevent navigation when there's an onClick
+      props.onClick();
+    }
+  };
+
   return (
     <Link
-      onClick={props.onClick}
+      onClick={handleClick}
       className="nav-link"
       to={props.to}
       style={{ background: props.bg, color: props.textColor }}

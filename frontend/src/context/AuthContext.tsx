@@ -47,12 +47,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
+  try {
     await logoutUser();
     setIsLoggedIn(false);
     setUser(null);
-    window.location.reload();
-
-  };
+    // Instead of window.location.reload(), navigate to home
+    // You'll need to pass navigate function or handle this in Header
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+};
 
   const value = {
     isLoggedIn,
