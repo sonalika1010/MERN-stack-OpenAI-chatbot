@@ -14,11 +14,13 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "http://localhost:3000", 
-    process.env.FRONTEND_URL, // Add this environment variable
-    /^https:\/\/frontend-.*-sonalikas-projects\.vercel\.app$/ // Regex for all your frontend deployments
+    "https://frontend-1h394gmkw-sonalikas-projects.vercel.app/"
   ],
   credentials: true,
 }));
+app.use(express.json());
+app.use(cookieParser(process.env.COOKIE_SECRET)); 
+
 // remove it in production
 app.use(morgan("dev"));
 
